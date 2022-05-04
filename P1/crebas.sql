@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     04.05.2022 11:48:06                          */
+/* Created on:     04.05.2022 21:42:51                          */
 /*==============================================================*/
 
 
@@ -10,11 +10,11 @@ drop index TERMINIERT_FK;
 
 drop index ABFLUG_PK;
 
-drop table ABFLUG;
+drop table ABFLUG cascade;
 
 drop index FLUGHAFEN_PK;
 
-drop table FLUGHAFEN;
+drop table FLUGHAFEN cascade; 
 
 drop index LANDED_FK;
 
@@ -22,11 +22,11 @@ drop index STARTED_FK;
 
 drop index FLUGVERBINDUNG_PK;
 
-drop table FLUGVERBINDUNG;
+drop table FLUGVERBINDUNG cascade; 
 
 drop index FLUGZEUG_PK;
 
-drop table FLUGZEUG;
+drop table FLUGZEUG cascade; 
 
 /*==============================================================*/
 /* Table: ABFLUG                                                */
@@ -35,7 +35,7 @@ create table ABFLUG (
    LUFTFAHRZEUGKENNZEICHEN VARCHAR(50)          not null,
    ABFLUGID             INT4                 not null,
    DATUM                DATE                 not null,
-   CONNECTIONID         INT4                 not null,
+   CONNECTIONID         VARCHAR(50)                 not null,
    constraint PK_ABFLUG primary key (LUFTFAHRZEUGKENNZEICHEN, ABFLUGID)
 );
 
@@ -83,9 +83,9 @@ IATA_CODE
 /* Table: FLUGVERBINDUNG                                        */
 /*==============================================================*/
 create table FLUGVERBINDUNG (
-   CONNECTIONID         INT4                 not null,
-   IATA_CODE            VARCHAR(50)          not null,
-   FLU_IATA_CODE        VARCHAR(50)          not null,
+   CONNECTIONID         VARCHAR(50)               not null,
+   ZIEL                 VARCHAR(50)          not null,
+   START                VARCHAR(50)          not null,
    constraint PK_FLUGVERBINDUNG primary key (CONNECTIONID)
 );
 
@@ -100,14 +100,14 @@ CONNECTIONID
 /* Index: STARTED_FK                                            */
 /*==============================================================*/
 create  index STARTED_FK on FLUGVERBINDUNG (
-FLU_IATA_CODE
+START
 );
 
 /*==============================================================*/
 /* Index: LANDED_FK                                             */
 /*==============================================================*/
 create  index LANDED_FK on FLUGVERBINDUNG (
-IATA_CODE
+ZIEL
 );
 
 /*==============================================================*/
@@ -138,12 +138,12 @@ alter table ABFLUG
       on delete restrict on update restrict;
 
 alter table FLUGVERBINDUNG
-   add constraint FK_FLUGVERB_LANDED_FLUGHAFE foreign key (IATA_CODE)
+   add constraint FK_FLUGVERB_LANDED_FLUGHAFE foreign key (ZIEL)
       references FLUGHAFEN (IATA_CODE)
       on delete restrict on update restrict;
 
 alter table FLUGVERBINDUNG
-   add constraint FK_FLUGVERB_STARTED_FLUGHAFE foreign key (FLU_IATA_CODE)
+   add constraint FK_FLUGVERB_STARTED_FLUGHAFE foreign key (START)
       references FLUGHAFEN (IATA_CODE)
       on delete restrict on update restrict;
 
