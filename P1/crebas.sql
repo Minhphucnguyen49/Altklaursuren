@@ -1,30 +1,28 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 9.x                               */
-/* Created on:     27/04/2022 18:47:05                          */
+/* Created on:     04.05.2022 11:48:06                          */
 /*==============================================================*/
 
 
-drop index R2_FK;
+drop index FLIEGT_FK;
 
-drop index R1_FK;
+drop index TERMINIERT_FK;
 
 drop index ABFLUG_PK;
 
 drop table ABFLUG;
 
-drop index R4_FK;
-
-drop index FLUG_PK;
-
-drop table FLUG;
-
 drop index FLUGHAFEN_PK;
 
 drop table FLUGHAFEN;
 
-drop index R3_FK2;
+drop index LANDED_FK;
 
-drop index R3_FK;
+drop index STARTED_FK;
+
+drop index FLUGVERBINDUNG_PK;
+
+drop table FLUGVERBINDUNG;
 
 drop index FLUGZEUG_PK;
 
@@ -34,132 +32,118 @@ drop table FLUGZEUG;
 /* Table: ABFLUG                                                */
 /*==============================================================*/
 create table ABFLUG (
-   FLUGNR               TEXT                 not null,
-   FLU_FLUGNR           TEXT                 null,
-   DATUM                TEXT                 null,
-   KENNZEICHEN          TEXT                 null,
-   constraint PK_ABFLUG primary key (FLUGNR)
+   LUFTFAHRZEUGKENNZEICHEN VARCHAR(50)          not null,
+   ABFLUGID             INT4                 not null,
+   DATUM                DATE                 not null,
+   CONNECTIONID         INT4                 not null,
+   constraint PK_ABFLUG primary key (LUFTFAHRZEUGKENNZEICHEN, ABFLUGID)
 );
 
 /*==============================================================*/
 /* Index: ABFLUG_PK                                             */
 /*==============================================================*/
 create unique index ABFLUG_PK on ABFLUG (
-FLUGNR
+LUFTFAHRZEUGKENNZEICHEN,
+ABFLUGID
 );
 
 /*==============================================================*/
-/* Index: R1_FK                                                 */
+/* Index: TERMINIERT_FK                                         */
 /*==============================================================*/
-create  index R1_FK on ABFLUG (
-FLU_FLUGNR
+create  index TERMINIERT_FK on ABFLUG (
+CONNECTIONID
 );
 
 /*==============================================================*/
-/* Index: R2_FK                                                 */
+/* Index: FLIEGT_FK                                             */
 /*==============================================================*/
-create  index R2_FK on ABFLUG (
-KENNZEICHEN
-);
-
-/*==============================================================*/
-/* Table: FLUG                                                  */
-/*==============================================================*/
-create table FLUG (
-   FLUGNR               TEXT                 not null,
-   IATA                 TEXT                 null,
-   ZIEL                 TEXT                 null,
-   START                TEXT                 null,
-   constraint PK_FLUG primary key (FLUGNR)
-);
-
-/*==============================================================*/
-/* Index: FLUG_PK                                               */
-/*==============================================================*/
-create unique index FLUG_PK on FLUG (
-FLUGNR
-);
-
-/*==============================================================*/
-/* Index: R4_FK                                                 */
-/*==============================================================*/
-create  index R4_FK on FLUG (
-IATA
+create  index FLIEGT_FK on ABFLUG (
+LUFTFAHRZEUGKENNZEICHEN
 );
 
 /*==============================================================*/
 /* Table: FLUGHAFEN                                             */
 /*==============================================================*/
 create table FLUGHAFEN (
-   IATA                 TEXT                 not null,
-   NAME                 TEXT                 null,
-   LANGENGRAD           DECIMAL              null,
-   BREITENGRAD          DECIMAL              null,
-   constraint PK_FLUGHAFEN primary key (IATA)
+   BREITENGRAD          FLOAT8               not null,
+   LANGENGRAD           FLOAT8               not null,
+   NAME                 VARCHAR(50)          not null,
+   IATA_CODE            VARCHAR(50)          not null,
+   constraint PK_FLUGHAFEN primary key (IATA_CODE)
 );
 
 /*==============================================================*/
 /* Index: FLUGHAFEN_PK                                          */
 /*==============================================================*/
 create unique index FLUGHAFEN_PK on FLUGHAFEN (
-IATA
+IATA_CODE
+);
+
+/*==============================================================*/
+/* Table: FLUGVERBINDUNG                                        */
+/*==============================================================*/
+create table FLUGVERBINDUNG (
+   CONNECTIONID         INT4                 not null,
+   IATA_CODE            VARCHAR(50)          not null,
+   FLU_IATA_CODE        VARCHAR(50)          not null,
+   constraint PK_FLUGVERBINDUNG primary key (CONNECTIONID)
+);
+
+/*==============================================================*/
+/* Index: FLUGVERBINDUNG_PK                                     */
+/*==============================================================*/
+create unique index FLUGVERBINDUNG_PK on FLUGVERBINDUNG (
+CONNECTIONID
+);
+
+/*==============================================================*/
+/* Index: STARTED_FK                                            */
+/*==============================================================*/
+create  index STARTED_FK on FLUGVERBINDUNG (
+FLU_IATA_CODE
+);
+
+/*==============================================================*/
+/* Index: LANDED_FK                                             */
+/*==============================================================*/
+create  index LANDED_FK on FLUGVERBINDUNG (
+IATA_CODE
 );
 
 /*==============================================================*/
 /* Table: FLUGZEUG                                              */
 /*==============================================================*/
 create table FLUGZEUG (
-   KENNZEICHEN          TEXT                 not null,
-   FLUGNR               TEXT                 null,
-   IATA                 TEXT                 null,
-   TYP                  TEXT                 null,
-   SITZPLATZE           INT4                 null,
-   constraint PK_FLUGZEUG primary key (KENNZEICHEN)
+   SITZPLATZ_           INT4                 not null,
+   LUFTFAHRZEUGKENNZEICHEN VARCHAR(50)          not null,
+   MODELTYP             VARCHAR(50)          not null,
+   constraint PK_FLUGZEUG primary key (LUFTFAHRZEUGKENNZEICHEN)
 );
 
 /*==============================================================*/
 /* Index: FLUGZEUG_PK                                           */
 /*==============================================================*/
 create unique index FLUGZEUG_PK on FLUGZEUG (
-KENNZEICHEN
-);
-
-/*==============================================================*/
-/* Index: R3_FK                                                 */
-/*==============================================================*/
-create  index R3_FK on FLUGZEUG (
-FLUGNR
-);
-
-/*==============================================================*/
-/* Index: R3_FK2                                                */
-/*==============================================================*/
-create  index R3_FK2 on FLUGZEUG (
-IATA
+LUFTFAHRZEUGKENNZEICHEN
 );
 
 alter table ABFLUG
-   add constraint FK_ABFLUG_R1_FLUG foreign key (FLU_FLUGNR)
-      references FLUG (FLUGNR)
+   add constraint FK_ABFLUG_FLIEGT_FLUGZEUG foreign key (LUFTFAHRZEUGKENNZEICHEN)
+      references FLUGZEUG (LUFTFAHRZEUGKENNZEICHEN)
       on delete restrict on update restrict;
 
 alter table ABFLUG
-   add constraint FK_ABFLUG_R2_FLUGZEUG foreign key (KENNZEICHEN)
-      references FLUGZEUG (KENNZEICHEN)
+   add constraint FK_ABFLUG_TERMINIER_FLUGVERB foreign key (CONNECTIONID)
+      references FLUGVERBINDUNG (CONNECTIONID)
       on delete restrict on update restrict;
 
-alter table FLUG
-   add constraint FK_FLUG_R4_FLUGHAFE foreign key (IATA)
-      references FLUGHAFEN (IATA)
+alter table FLUGVERBINDUNG
+   add constraint FK_FLUGVERB_LANDED_FLUGHAFE foreign key (IATA_CODE)
+      references FLUGHAFEN (IATA_CODE)
       on delete restrict on update restrict;
 
-alter table FLUGZEUG
-   add constraint FK_FLUGZEUG_R3_ABFLUG foreign key (FLUGNR)
-      references ABFLUG (FLUGNR)
-      on delete restrict on update restrict;
-
-alter table FLUGZEUG
-   add constraint FK_FLUGZEUG_R3_FLUGHAFE foreign key (IATA)
-      references FLUGHAFEN (IATA)
+alter table FLUGVERBINDUNG
+   add constraint FK_FLUGVERB_STARTED_FLUGHAFE foreign key (FLU_IATA_CODE)
+      references FLUGHAFEN (IATA_CODE)
       on delete restrict on update restrict;
 
