@@ -1,0 +1,10 @@
+
+1.  psql -h localhost -U postgres -d AirportDB 
+Everytime when using terminal Befehler
+Passwort: 123456
+
+Step 1: Always \i deleteAll.sql (Because 
+Step 2: \i insert.sql
+2. \i crebas.sql
+3. \i insert.sql
+4. select count (*) from ABFLUG;
