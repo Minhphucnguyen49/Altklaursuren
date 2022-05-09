@@ -1,0 +1,7 @@
+
+1.  psql -h localhost -U postgres -d AirportDB 
+Everytime when using terminal Befehler
+Passwort: 123456
+2. \i crebas.sql
+3. \i insert.sql
+4. select count (*) from ABFLUG;
