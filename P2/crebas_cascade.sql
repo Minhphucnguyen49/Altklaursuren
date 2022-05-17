@@ -245,15 +245,21 @@ alter table BUCHUNG
 alter table FLUGVERBINDUNG
    add constraint FK_FLUGVERB_LANDED_FLUGHAFE foreign key (ZIEL)
       references FLUGHAFEN (IATA_CODE)
-      on delete cascade on update restrict;
+
+      on delete restrict on update restrict;
+
 
 alter table FLUGVERBINDUNG
    add constraint FK_FLUGVERB_STARTED_FLUGHAFE foreign key (START)
       references FLUGHAFEN (IATA_CODE)
-      on delete cascade on update restrict;
+
+      on delete restrict on update restrict;
+
 
 alter table WARTUNG
    add constraint FK_WARTUNG_GEWARTET_FLUGZEUG foreign key (LUFTFAHRZEUGKENNZEICHEN)
       references FLUGZEUG (LUFTFAHRZEUGKENNZEICHEN)
       on delete restrict on update restrict;
+
+
 
