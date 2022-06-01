@@ -1,0 +1,67 @@
+1. Welche Flüge gehen am 01.10.2018? geprüft
+    ```sql   
+    SELECT abflug.connectionid, abflug.datum, abflug.luftfahrzeugkennzeichen
+    FROM abflug
+    WHERE datum='2018-01-10';
+    ```
+2. Geben Sie Name, Vorname und Flugnummer aller Passagiere aus, die überhaupt Flüge gebucht haben. geprüft
+    ```sql
+    SELECT passagier.nachname, passagier.vorname, buchung.connectionid
+    FROM passagier
+    INNER JOIN buchung ON passagier.kundennummer=buchung.kundennummer;
+    ```
+3. Wie 2, jedoch nur für Abﬂüge am 02.10.2018. geprüft
+    ```sql
+    SELECT passagier.nachname, passagier.vorname, buchung.connectionid
+    FROM passagier
+    INNER JOIN buchung ON passagier.kundennummer=buchung.kundennummer
+    AND datum='2018-02-10';
+    ```
+4.  Geben Sie die Namen (und **nur** die Namen) der Flughäfen an, die von London Heathrow (LHR) aus angeﬂogen werden. -- fehlt nur noch Frankfurt Airport --
+    ```sql
+    SELECT flughafen.name
+    FROM flughafen
+    INNER JOIN flugverbindung ON flughafen.iata_code = flugverbindung.ziel
+    AND flugverbindung.start = 'LHR';
+    ```
+5. Geben Sie die Gesamtsumme aus, die der Passagier „Michael Roth“ für Tickets ausgegeben hat.
+geprüft (achte auf Klammer bei buchung.preis)
+     ```sql
+    SELECT SUM (buchung.preis)
+    FROM buchung
+    INNER JOIN passagier ON passagier.kundennummer=buchung.kundennummer
+    WHERE passagier.nachname='Roth'
+    AND passagier.vorname='Michael';
+    ```
+   
+6. Geben Sie eine nach Anzahl der gebuchten Tickets sortierte Liste mit Namen und Vornamen der Passagiere sowie der Ticktanzahl aus. -- fehlerhaft --
+     ```sql
+    SELECT passagier.nachname, passagier.vorname, count(buchung.kundennummer) AS anzahl
+    FROM passagier
+    INNER JOIN buchung ON passagier.kundennummer=buchung.kundennummer
+    GROUP BY buchung.kundennummer;
+    ```
+
+
+    https://stackoverflow.com/questions/19601948/must-appear-in-the-group-by-clause-or-be-used-in-an-aggregate-function
+    
+ALTER TABLE buchung
+ADD CHECK (PREIS<= 999.00);
+    
+INSERT INTO buchung 
+VALUES ()
+
+INSERT INTO buchung (KUNDENNUMMER, BUCHUNGID, CONNECTIONID, DATUM, PREIS) VALUES
+(1, 11, 'LH-100', '2018-01-10', 1050.00);
+
+ALTER TABLE flugzeug ADD CONSTRAINT  keine_leeren_flugzeuge CHECK (sitzplatz_>0);
+
+INSERT INTO FLUGZEUG(LUFTFAHRZEUGKENNZEICHEN, MODELTYP) VALUES
+('test', 'testtest');
+
+SELECT flugzeug.sitzplatz_
+FROM flugzeug
+WHERE flugzeug.LUFTFAHRZEUGKENNZEICHEN='test';
+
+ALTER TABLE flugzeug
+ALTER sitzplatz_ SET DEFAULT 100;
