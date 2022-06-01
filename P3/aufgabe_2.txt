@@ -1,0 +1,14 @@
+Aufgabe 2) geprüft
+
+1) 
+ALTER TABLE buchung
+ADD CHECK (PREIS<= 999.00);
+
+2)
+ALTER TABLE flugzeug
+ADD CONSTRAINT keine_leeren_flugzeuge
+CHECK (sitzplatz_>0);
+
+ALTER TABLE flugzeug
+ALTER sitzplatz_ SET DEFAULT 100;
+
