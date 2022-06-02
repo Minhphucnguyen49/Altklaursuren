@@ -83,7 +83,10 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
     INNER JOIN buchung ON passagier.kundennummer=buchung.kundennummer
     AND datum='2018-02-10';
     ```
-4.  Geben Sie die Namen (und **nur** die Namen) der Flughäfen an, die von London Heathrow (LHR) aus angeﬂogen werden. -- fehlt nur noch Frankfurt Airport --
+4.  Geben Sie die Namen (und **nur** die Namen) der Flughäfen an, die von London Heathrow (LHR) aus angeﬂogen werden. 
+
+-- fehlt nur noch Frankfurt Airport --
+
     ```sql
     SELECT flughafen.name
     FROM flughafen
@@ -91,7 +94,9 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
     AND flugverbindung.start = 'LHR';
     ```
 5. Geben Sie die Gesamtsumme aus, die der Passagier „Michael Roth“ für Tickets ausgegeben hat.
+
 (geprüft) (achte auf Klammer bei buchung.preis)
+
     ```sql
     SELECT SUM (buchung.preis)
     FROM buchung
@@ -100,7 +105,10 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
     AND passagier.vorname='Michael';
     ```
    
-6. Geben Sie eine nach Anzahl der gebuchten Tickets sortierte Liste mit Namen und Vornamen der Passagiere sowie der Ticktanzahl aus.  (geprüft) 
+6. Geben Sie eine nach Anzahl der gebuchten Tickets sortierte Liste mit Namen und Vornamen der Passagiere sowie der Ticktanzahl aus.  
+
+(geprüft) 
+
      ```sql
     SELECT p.nachname, p.vorname, COUNT(buchung.kundennummer) AS anzahl
         FROM passagier p
@@ -109,7 +117,10 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
         ORDER BY anzahl DESC;
     ```
 
-7. Generieren Sie eine Liste, bei der alle Flüge mit der **Anzahl** der Abﬂüge ausgegeben werden. Sortieren Sie die Liste so, dass der Flug mit den meisten Abﬂügen ganz oben steht. (geprüft)
+7. Generieren Sie eine Liste, bei der alle Flüge mit der **Anzahl** der Abﬂüge ausgegeben werden. Sortieren Sie die Liste so, dass der Flug mit den meisten Abﬂügen ganz oben steht. 
+
+(geprüft)
+
      ```sql
     SELECT a.connectionid AS flugnr, COUNT(a.connectionid) AS anzahl  
         FROM abflug a
@@ -117,7 +128,10 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
         ORDER BY anzahl DESC;
     ```
 
-8. Schreiben Sie eine Abfrage, welche Flughäfen anzeigt die **gar nicht** angeﬂogen werden. (geprüft, ausser WDH gibt es extra noch FRA, ich glaube aber meine Loesung richtig ist, weil als Ziel ist bei FRA nicht der Fall)
+8. Schreiben Sie eine Abfrage, welche Flughäfen anzeigt die **gar nicht** angeﬂogen werden. 
+
+(geprüft, ausser WDH gibt es extra noch FRA, ich glaube aber meine Loesung richtig ist, weil als Ziel ist bei FRA nicht der Fall)
+
      ```sql
     SELECT fh.IATA_CODE AS iata
         FROM flughafen fh
@@ -126,7 +140,9 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
     ```
 
 9. Welche Flughäfen sind von Frankfurt aus nicht mit einem Direktﬂug, sondern lediglich **mit einem Umstieg** zu erreichen?
-(zu schwer für mich an der Stelle)
+
+(zu schwer für mich an der Stelle T_T)
+
      ```sql
     SELECT fh.IATA_CODE AS iata, fh.NAME AS fhname, , fh.LANGENGRAD AS lon, fh.BREITENGRAD AS lat
         FROM flughafen fh
@@ -152,8 +168,17 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
     ```
 
 11. Wie viele Passagiere könnten theoretisch (bei voller Auslastung aller geplanten Abﬂüge) am 02.10.2018 von Frankfurt aus transportiert werden?
+
+(geprüft)
+
     ```sql
-    SELECT ...
+    SELECT SUM(fg.SITZPLATZ_) AS max_sitzplatz
+        FROM FLUGZEUG fg
+        INNER JOIN abflug a ON fg.LUFTFAHRZEUGKENNZEICHEN = a.LUFTFAHRZEUGKENNZEICHEN
+        AND a.datum = '2018-02-10'
+    
+        JOIN flugverbindung f ON f.connectionid = a.connectionid
+        AND f.START = 'FRA';
     ```
     
 12. Geben Sie eine Liste aller Passagiere inklusive aller Flugdaten aus:
@@ -166,17 +191,45 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
     - Name des Startﬂughafens
     - IATA-Code des Zielﬂughafens
     - Name des Zielﬂughafens
+
+(geprüft)
+
      ```sql
-    SELECT ...
+    SELECT 
+    p.nachname, 
+    p.vorname, 
+    b.preis, 
+    b.connectionid AS flugnr, 
+    b.datum, 
+    f.START AS start, 
+    fh1.name AS start_name, 
+    f.ZIEL AS ziel,
+    fh2.name AS ziel_name
+        
+        FROM BUCHUNG b
+        
+        JOIN PASSAGIER p ON p.KUNDENNUMMER = b.KUNDENNUMMER 
+
+        JOIN flugverbindung f ON f.connectionid = b.connectionid
+
+        JOIN FLUGHAFEN fh1 ON fh1.IATA_CODE = f.START 
+        JOIN FLUGHAFEN fh2 ON fh2.IATA_CODE = f.ZIEL; 
     ```
 
 13. Generieren Sie eine absteigend sortierte Liste, die pro Flugzeugtyp angibt wie viele Passagiere in Summe bei voller Auslastung aller Abﬂüge befördert werden können.
+(geprüft)
+
      ```sql
-    SELECT ...
+    SELECT fg.MODELTYP AS typ, SUM (fg.SITZPLATZ_) AS gesamt
+        FROM flugzeug fg
+        JOIN abflug a ON a.LUFTFAHRZEUGKENNZEICHEN = fg.LUFTFAHRZEUGKENNZEICHEN
+        GROUP BY fg.MODELTYP
+        ORDER BY gesamt DESC;
     ```
 
 14. Welche Flughäfen sind am häuﬁgsten **Ziel** von Flugverbindungen?
 (verzweifelt)
+
      ```sql
     SELECT f.ZIEL, COUNT( f.ZIEL ) AS anzahl
         FROM flugverbindung f
