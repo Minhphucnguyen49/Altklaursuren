@@ -141,13 +141,19 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
 
 9. Welche Flughäfen sind von Frankfurt aus nicht mit einem Direktﬂug, sondern lediglich **mit einem Umstieg** zu erreichen?
 
-(zu schwer für mich an der Stelle T_T)
+(braucht noch zu besprechen)
 
      ```sql
-    SELECT fh.IATA_CODE AS iata, fh.NAME AS fhname, , fh.LANGENGRAD AS lon, fh.BREITENGRAD AS lat
+    SELECT fh.IATA_CODE AS iata, fh.NAME AS fhname , fh.LANGENGRAD AS lon, fh.BREITENGRAD AS lat
         FROM flughafen fh
+        
         JOIN flugverbindung f ON f.ZIEL = fh.IATA_CODE
-        WHERE f.START = 'FRA'; 
+       /*WHERE f.START != 'FRA'*/
+
+        JOIN flugverbindung f1 ON f1.
+        WHERE 
+        
+
     ```
 
 10. Ist es möglich, am 03.10.2018 von Frankfurt (FRA) **über** London (LHR) nach Beijing (PEK) zu ﬂiegen? Geben Sie für jede mögliche Verbindung Startdatum, Startﬂughafen, Zwischenlandung, Zielﬂughafen **in jeweils einer Zeile** an. (Dabei wird davon ausgegangen, dass Folgeﬂüge am selben Tag noch erreicht werden können) 
@@ -155,18 +161,28 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
 (braucht noch zu besprechen)
 
     ```sql
-    SELECT a.datum AS Startdatum, a. connectionid AS flugnr,
-           f.START AS Startflughafen, f.ZIEL AS Zwischenlandung,
-           f1.ZIEL AS Zielflughafen
+    SELECT 
+        a.datum AS Startdatum, 
+        a.connectionid AS flugnr,
+        f.START AS start, 
+        f.ZIEL AS Zwischenlandung,
+        f1.ZIEL AS Zielflughafen
+        
         FROM abflug a  
+        
         JOIN flugverbindung f ON f.connectionid = a.connectionid
         AND f.start = 'FRA' AND f.ziel = 'LHR'
-        
+        AND a.datum = '2018-03-10'
+
         JOIN flugverbindung f1 ON f1.START = 'LHR'
-        AND f1.ZIEL = 'PEK' WHERE a.datum = '2018-03-10';
+        AND f1.ZIEL = 'PEK';
         
     ```
-
+/* JOIN abflug a1 ON a1.connectionid = f.connectionid
+        AND f.ziel = 'LHR' 
+        
+        a1.datum AS zwischenstopp_start_datum
+        a1.connectionid AS flugnr,*/
 11. Wie viele Passagiere könnten theoretisch (bei voller Auslastung aller geplanten Abﬂüge) am 02.10.2018 von Frankfurt aus transportiert werden?
 
 (geprüft)
