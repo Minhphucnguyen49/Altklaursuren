@@ -173,6 +173,7 @@ Implementieren Sie die folgenden drei Triggerfunktionen und Trigger auf die Buch
 	$$ language plpgsql;
     ```
     ```sql
+	drop trigger checkFreeSeat on buchung;
 	create trigger checkFreeSeat before insert on BUCHUNG
 	    for each row execute procedure freeSeat();
     ```
@@ -215,31 +216,29 @@ Implementieren Sie die folgenden drei Triggerfunktionen und Trigger auf die Buch
     ```
     
     ```sql
+	drop trigger payWithBonusmiles on buchung;
 	create trigger payWithBonusmiles before insert on buchung 
 		for each row execute procedure payWithBonusmeilen();
     ```
 3. Einen *after insert* Trigger, der die Bonusmeilen für den gerade gebuchten Flug berechnet und dem Passagier gut schreibt.
-    ```sql
-    create or replace function ...
-    ```
-    ```sql
-    create trigger ...
-    ```
-
-**Hinweis:** Die Aufgabe verlangt, zwei Trigger als *before insert* auf die gleiche Tabelle zu legen. In diesem Fall werden die Trigger in alphabetischer Reihenfolge ausgeführt. Die Reihenfolge ist wichtig, da der Trigger aus 1 auf jeden Fall **vor** dem Trigger aus 2 ausgeführt werden soll.
-
-Sie können allerdings auch Aufgabe 1 und 2 in einem einzigen Trigger realisieren, wenn Sie wollen. Nutzen Sie in diesem Fall die untenstehenden Platzhalter zur Dokumentation Ihrer Lösung.
 ```sql
-create or replace function updateBonusmeilen() returns trigger as $update_bonusmile$
+    create or replace function updateBonusmeilen() returns trigger as 
+	$$
 	declare
 		newBonusmeilen integer;
 	begin
 		newBonusmeilen := getPassagierBonusmeilen(NEW.KUNDENNUMMER) + 0.1 * distance(NEW.CONNECTIONID);
 		update passagier set bonusmeilen = newBonusmeilen where passagier.KUNDENNUMMER = NEW.KUNDENNUMMER;
 	end
-	$update_bonusmile$ language plpgsql;
+	$$ language plpgsql;
 ```
 ```sql
+	drop trigger updatePassagierBonusmeilen on buchung;
 	create trigger updatePassagierBonusmeilen after insert on buchung 
 		for each row execute procedure updateBonusmeilen();
 ```
+
+**Hinweis:** Die Aufgabe verlangt, zwei Trigger als *before insert* auf die gleiche Tabelle zu legen. In diesem Fall werden die Trigger in alphabetischer Reihenfolge ausgeführt. Die Reihenfolge ist wichtig, da der Trigger aus 1 auf jeden Fall **vor** dem Trigger aus 2 ausgeführt werden soll.
+
+Sie können allerdings auch Aufgabe 1 und 2 in einem einzigen Trigger realisieren, wenn Sie wollen. Nutzen Sie in diesem Fall die untenstehenden Platzhalter zur Dokumentation Ihrer Lösung.
+
