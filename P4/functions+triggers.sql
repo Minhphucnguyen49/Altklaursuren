@@ -115,6 +115,7 @@
 	end
 	$$ language plpgsql;
 
+	drop trigger checkFreeSeat on buchung;
 	create trigger checkFreeSeat before insert on BUCHUNG
 	    for each row execute procedure freeSeat();
     
@@ -139,7 +140,8 @@
 	end
 	$$ language plpgsql;
 
-	create or replace function payWithBonusmeilen() returns trigger as $payWithBonus$
+	create or replace function payWithBonusmeilen() returns trigger as 
+	$$
 	declare
 		distance integer := distance(NEW.CONNECTIONID);
 		passagierBonusmeilen integer := getPassagierBonusmeilen(NEW.KUNDENNUMMER);
@@ -152,20 +154,23 @@
 		end if;
 		return new;
 	end
-	$payWithBonus$ language plpgsql;
+	$$ language plpgsql;
 
+	drop trigger payWithBonusmiles on buchung;
 	create trigger payWithBonusmiles before insert on buchung 
 		for each row execute procedure payWithBonusmeilen();
 
     --3--
-    create or replace function updateBonusmeilen() returns trigger as $update_bonusmile$
+    create or replace function updateBonusmeilen() returns trigger as 
+	$$
 	declare
 		newBonusmeilen integer;
 	begin
 		newBonusmeilen := getPassagierBonusmeilen(NEW.KUNDENNUMMER) + 0.1 * distance(NEW.CONNECTIONID);
 		update passagier set bonusmeilen = newBonusmeilen where passagier.KUNDENNUMMER = NEW.KUNDENNUMMER;
 	end
-	$update_bonusmile$ language plpgsql;
+	$$ language plpgsql;
 
+	drop trigger updatePassagierBonusmeilen on buchung;
 	create trigger updatePassagierBonusmeilen after insert on buchung 
 		for each row execute procedure updateBonusmeilen();
