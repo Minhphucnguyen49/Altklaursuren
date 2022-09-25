@@ -1,0 +1,561 @@
+{
+  "Anzahl Kunden": 100,
+  "Anzahl Mitarbeiter": 3,
+  "Kunden": [
+    {
+      "Alter": 5,
+      "ID": 6202,
+      "Name": "Noah Klein"
+    },
+    {
+      "Alter": 5,
+      "ID": 18087,
+      "Name": "Nora Schneider"
+    },
+    {
+      "Alter": 5,
+      "ID": 13694,
+      "Name": "Alexander Mueller",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 5,
+      "ID": 18896,
+      "Name": "Kian Koch",
+      "TrainerID": 28145
+    },
+    {
+      "Alter": 5,
+      "ID": 1763,
+      "Name": "Anna Schmitt"
+    },
+    {
+      "Alter": 5,
+      "ID": 21718,
+      "Name": "Jonas Weiss"
+    },
+    {
+      "Alter": 8,
+      "ID": 22758,
+      "Name": "Matteo Krause"
+    },
+    {
+      "Alter": 9,
+      "ID": 1018,
+      "Name": "Sophia Schmidt"
+    },
+    {
+      "Alter": 9,
+      "ID": 16549,
+      "Name": "Julia Weber"
+    },
+    {
+      "Alter": 10,
+      "ID": 22888,
+      "Name": "Levin Huber",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 10,
+      "ID": 15890,
+      "Name": "Lara Lang",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 11,
+      "ID": 29565,
+      "Name": "Emma Lehmann"
+    },
+    {
+      "Alter": 12,
+      "ID": 20416,
+      "Name": "Hannes Weiss"
+    },
+    {
+      "Alter": 12,
+      "ID": 19866,
+      "Name": "Finn Keller",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 14,
+      "ID": 9758,
+      "Name": "Marvin Schulz",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 15,
+      "ID": 11173,
+      "Name": "Paul Hermann"
+    },
+    {
+      "Alter": 15,
+      "ID": 2510,
+      "Name": "Noah Bauer"
+    },
+    {
+      "Alter": 15,
+      "ID": 8942,
+      "Name": "Luisa Hofmann",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 16,
+      "ID": 22466,
+      "Name": "Lia Schneider"
+    },
+    {
+      "Alter": 16,
+      "ID": 31322,
+      "Name": "Jonathan Fischer"
+    },
+    {
+      "Alter": 17,
+      "ID": 20945,
+      "Name": "Jonas Becker",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 20,
+      "ID": 4041,
+      "Name": "Joris Koehler"
+    },
+    {
+      "Alter": 22,
+      "ID": 4414,
+      "Name": "Anton Hartmann"
+    },
+    {
+      "Alter": 23,
+      "ID": 6618,
+      "Name": "Joris Mueller"
+    },
+    {
+      "Alter": 23,
+      "ID": 5844,
+      "Name": "Lina Lange"
+    },
+    {
+      "Alter": 23,
+      "ID": 2082,
+      "Name": "Moritz Walter",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 26,
+      "ID": 19589,
+      "Name": "Emily Hahn",
+      "TrainerID": 28145
+    },
+    {
+      "Alter": 26,
+      "ID": 7711,
+      "Name": "Rupert Klein",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 27,
+      "ID": 142,
+      "Name": "Noah Schulze",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 27,
+      "ID": 8480,
+      "Name": "Mathilda Hermann"
+    },
+    {
+      "Alter": 28,
+      "ID": 24084,
+      "Name": "Joris Meier"
+    },
+    {
+      "Alter": 30,
+      "ID": 26576,
+      "Name": "Michael Schmitz"
+    },
+    {
+      "Alter": 30,
+      "ID": 22190,
+      "Name": "Samuel Wolf"
+    },
+    {
+      "Alter": 31,
+      "ID": 20222,
+      "Name": "Elena Scholz"
+    },
+    {
+      "Alter": 31,
+      "ID": 20671,
+      "Name": "Vera Schmidt",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 31,
+      "ID": 27506,
+      "Name": "Luan Zimmermann"
+    },
+    {
+      "Alter": 31,
+      "ID": 31101,
+      "Name": "Oliver Mueller"
+    },
+    {
+      "Alter": 31,
+      "ID": 14771,
+      "Name": "Mine Jung"
+    },
+    {
+      "Alter": 32,
+      "ID": 13261,
+      "Name": "Marie Lang",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 32,
+      "ID": 30191,
+      "Name": "Juna Schmid"
+    },
+    {
+      "Alter": 33,
+      "ID": 23646,
+      "Name": "Liam Braun"
+    },
+    {
+      "Alter": 34,
+      "ID": 18190,
+      "Name": "Mathilda Walter"
+    },
+    {
+      "Alter": 34,
+      "ID": 24626,
+      "Name": "Levin Scholz",
+      "TrainerID": 28145
+    },
+    {
+      "Alter": 35,
+      "ID": 29790,
+      "Name": "Valentin Fischer",
+      "TrainerID": 28145
+    },
+    {
+      "Alter": 35,
+      "ID": 6902,
+      "Name": "Samuel Schmitt"
+    },
+    {
+      "Alter": 35,
+      "ID": 6617,
+      "Name": "Felix Braun",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 35,
+      "ID": 16941,
+      "Name": "Anton Mueller"
+    },
+    {
+      "Alter": 36,
+      "ID": 30771,
+      "Name": "Maria Hofmann"
+    },
+    {
+      "Alter": 37,
+      "ID": 10585,
+      "Name": "Theo Schmitt"
+    },
+    {
+      "Alter": 37,
+      "ID": 18651,
+      "Name": "Elena Hahn"
+    },
+    {
+      "Alter": 37,
+      "ID": 23622,
+      "Name": "Emma Wagner"
+    },
+    {
+      "Alter": 38,
+      "ID": 29972,
+      "Name": "Hannes Lange"
+    },
+    {
+      "Alter": 40,
+      "ID": 25627,
+      "Name": "Tim Lange"
+    },
+    {
+      "Alter": 40,
+      "ID": 17958,
+      "Name": "Johanna Mayer",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 40,
+      "ID": 4639,
+      "Name": "Daniel Koehler"
+    },
+    {
+      "Alter": 41,
+      "ID": 9374,
+      "Name": "Lima Huber",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 42,
+      "ID": 27753,
+      "Name": "Moritz Wagner"
+    },
+    {
+      "Alter": 42,
+      "ID": 15573,
+      "Name": "Nane Meier"
+    },
+    {
+      "Alter": 44,
+      "ID": 30527,
+      "Name": "Tim Schneider"
+    },
+    {
+      "Alter": 44,
+      "ID": 25996,
+      "Name": "Leon Schmitt"
+    },
+    {
+      "Alter": 44,
+      "ID": 2368,
+      "Name": "Leon Hofmann",
+      "TrainerID": 28145
+    },
+    {
+      "Alter": 44,
+      "ID": 2154,
+      "Name": "Max Lehmann",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 45,
+      "ID": 20851,
+      "Name": "Luisa Richter",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 45,
+      "ID": 4745,
+      "Name": "Michael Meyer",
+      "TrainerID": 28145
+    },
+    {
+      "Alter": 45,
+      "ID": 3788,
+      "Name": "Philipp Walter"
+    },
+    {
+      "Alter": 47,
+      "ID": 26439,
+      "Name": "Nina Schulz"
+    },
+    {
+      "Alter": 47,
+      "ID": 12455,
+      "Name": "Lena Walter"
+    },
+    {
+      "Alter": 47,
+      "ID": 4886,
+      "Name": "Samuel Lang"
+    },
+    {
+      "Alter": 48,
+      "ID": 9741,
+      "Name": "Moritz Schulz"
+    },
+    {
+      "Alter": 49,
+      "ID": 24372,
+      "Name": "Leni Maier"
+    },
+    {
+      "Alter": 49,
+      "ID": 24272,
+      "Name": "Lea Schneider"
+    },
+    {
+      "Alter": 49,
+      "ID": 53,
+      "Name": "Noah Schulze"
+    },
+    {
+      "Alter": 49,
+      "ID": 3902,
+      "Name": "Ben Huber",
+      "TrainerID": 28145
+    },
+    {
+      "Alter": 50,
+      "ID": 20485,
+      "Name": "Leon Schneider"
+    },
+    {
+      "Alter": 50,
+      "ID": 26924,
+      "Name": "Ben Braun",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 52,
+      "ID": 29314,
+      "Name": "Hannes Schmitt",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 52,
+      "ID": 2306,
+      "Name": "Ida Schmid"
+    },
+    {
+      "Alter": 52,
+      "ID": 26299,
+      "Name": "Nora Bauer"
+    },
+    {
+      "Alter": 53,
+      "ID": 23199,
+      "Name": "Emily Braun"
+    },
+    {
+      "Alter": 57,
+      "ID": 23844,
+      "Name": "Kian Schmitz"
+    },
+    {
+      "Alter": 58,
+      "ID": 24648,
+      "Name": "Levi Werner"
+    },
+    {
+      "Alter": 61,
+      "ID": 27892,
+      "Name": "Kilian Wagner",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 61,
+      "ID": 18935,
+      "Name": "Leo Schulz",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 63,
+      "ID": 13401,
+      "Name": "Thomas Koch"
+    },
+    {
+      "Alter": 64,
+      "ID": 27624,
+      "Name": "Lena Schaefer",
+      "TrainerID": 28145
+    },
+    {
+      "Alter": 65,
+      "ID": 29170,
+      "Name": "Ava Lange"
+    },
+    {
+      "Alter": 65,
+      "ID": 19187,
+      "Name": "Linn Klein"
+    },
+    {
+      "Alter": 65,
+      "ID": 32591,
+      "Name": "Ava Schwarz",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 65,
+      "ID": 9161,
+      "Name": "Jonas Koenig",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 66,
+      "ID": 18716,
+      "Name": "Luis Lehmann"
+    },
+    {
+      "Alter": 67,
+      "ID": 17505,
+      "Name": "Lorenz Fischer",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 69,
+      "ID": 28022,
+      "Name": "Ben Richter"
+    },
+    {
+      "Alter": 69,
+      "ID": 32662,
+      "Name": "Philipp Jung"
+    },
+    {
+      "Alter": 70,
+      "ID": 31185,
+      "Name": "Ava Richter"
+    },
+    {
+      "Alter": 70,
+      "ID": 15574,
+      "Name": "Lena Neumann"
+    },
+    {
+      "Alter": 71,
+      "ID": 28617,
+      "Name": "Ina Walter",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 71,
+      "ID": 7376,
+      "Name": "Mila Moeller"
+    },
+    {
+      "Alter": 72,
+      "ID": 32170,
+      "Name": "Alina Schaefer",
+      "TrainerID": 11942
+    },
+    {
+      "Alter": 72,
+      "ID": 28297,
+      "Name": "Kian Krueger",
+      "TrainerID": 15724
+    },
+    {
+      "Alter": 74,
+      "ID": 31556,
+      "Name": "Tanguy Keller"
+    }
+  ],
+  "Mitarbeiter": [
+    {
+      "Alter": 30,
+      "Gehaltsklasse": "Trainer",
+      "ID": 15724,
+      "Name": "Levi Maier"
+    },
+    {
+      "Alter": 31,
+      "Gehaltsklasse": "Manager",
+      "ID": 11942,
+      "Name": "Tim Koch"
+    },
+    {
+      "Alter": 34,
+      "Gehaltsklasse": "Trainer",
+      "ID": 28145,
+      "Name": "Lia Bauer"
+    }
+  ]
+}
