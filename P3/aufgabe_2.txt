@@ -3,6 +3,7 @@ Aufgabe 2) geprüft
 1) 
 ALTER TABLE buchung
 ADD CHECK (PREIS<= 999.00);
+ADD CHECK (PREIS < '999');
 
 2)
 ALTER TABLE flugzeug

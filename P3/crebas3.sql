@@ -88,7 +88,7 @@ create table BUCHUNG (
    BUCHUNGID            INT4                 not null,
    KUNDENNUMMER         INT4                 not null,
    DATUM                DATE                 null,
-   PREIS                DECIMAL                null,
+   PREIS                DECIMAL              null,
    constraint PK_BUCHUNG primary key (BUCHUNGID)
 );
 

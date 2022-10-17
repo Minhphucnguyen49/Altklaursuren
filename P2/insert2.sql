@@ -1,17 +1,17 @@
 INSERT INTO FLUGHAFEN (IATA_CODE, NAME, BREITENGRAD, LANGENGRAD) VALUES 
-('ATL', 'Hartsfield-Jackson International Airport Atlanta', -84.4280556, 33.636667),
-('PEK', 'Beijing Capital International Airport', 166.5975, 40.0725),
-('DXB', 'Dubai INternational Airport', 55.364444, 25.252778),
-('ORD', 'Chicago O Hare International Airport', -87.904722, 41.978611),
-('HND', 'Tokyo International Airport', 139.781111, 35.553333),
-('LHR', 'Heathrow Airport', -0.461389, 51.4775),
-('LAX', 'Los Angeles International Airport',-118.408056, 33.9425),
-('HKG', 'Hong Kong International Airport', 113.914444, 22.308889),
-('CDG', 'Paris Charles de Gaulle Airport', 2.547778, 49.009722),
-('DFW', 'Dallas International Airport', -97.038056, 32.896944),
-('IST', 'Istanbul Atatürk Airport', 28.814167, 40.976111),
-('FRA', 'Frankfurt Airport', 8.570556, 50.033333),
-('WDH', 'Hosea Kutako International Airport', 17.47095, -22.479894);
+('ATL', 'Hartsfield-Jackson International Airport Atlanta',  -84.4280556, 33.636667),
+('PEK', 'Beijing Capital International Airport',             166.5975, 40.0725),
+('DXB', 'Dubai INternational Airport',                       55.364444, 25.252778),
+('ORD', 'Chicago O Hare International Airport',              -87.904722, 41.978611),
+('HND', 'Tokyo International Airport',                       139.781111, 35.553333),
+('LHR', 'Heathrow Airport',                                  -0.461389, 51.4775),
+('LAX', 'Los Angeles International Airport',                 -118.408056, 33.9425),
+('HKG', 'Hong Kong International Airport',                   113.914444, 22.308889),
+('CDG', 'Paris Charles de Gaulle Airport',                   2.547778, 49.009722),
+('DFW', 'Dallas International Airport',                      -97.038056, 32.896944),
+('IST', 'Istanbul Atatürk Airport',                          28.814167, 40.976111),
+('FRA', 'Frankfurt Airport',                                 8.570556, 50.033333),
+('WDH', 'Hosea Kutako International Airport',                17.47095, -22.479894);
 
 INSERT INTO FLUGZEUG(LUFTFAHRZEUGKENNZEICHEN, MODELTYP, SITZPLATZ_) VALUES
 ('D-ABBB', 'Airbus A330-300', 236),
@@ -109,7 +109,7 @@ INSERT INTO PASSAGIER(KUNDENNUMMER, NACHNAME, VORNAME, BONUSMEILEN) VALUES
 (5 , 'Peter'    , 'Thorsten' ,           0),
 (6 , 'Ruehl'    , 'Stefan'   ,           0);
 
-INSERT INTO BUCHUNG (KUNDENNUMMER, BUCHUNGID, CONNECTIONID, DATUM, PREIS) VALUES
-(1, 123, 'LH-100', '2018-01-10', 100.00),
-(5, 456, 'LH-102', '2018-04-10', 100.00),
-(6, 789, 'LH-104', '2018-07-10', 100.00);
+INSERT INTO BUCHUNG (KUNDENNUMMER, CONNECTIONID, DATUM, PREIS) VALUES
+(1, 'LH-100', '2018-01-10', 100.00),
+(5, 'LH-102', '2018-04-10', 100.00),
+(6, 'LH-104', '2018-07-10', 100.00);

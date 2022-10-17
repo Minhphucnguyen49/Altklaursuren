@@ -82,11 +82,11 @@ LUFTFAHRZEUGKENNZEICHEN
 /* Table: BUCHUNG                                               */
 /*==============================================================*/
 create table BUCHUNG (
+   KUNDENNUMMER         INT4                 not null,
+   BUCHUNGID            INT4                 not null,
    CONNECTIONID         VARCHAR(50)          not null,
    LUFTFAHRZEUGKENNZEICHEN VARCHAR(50)       null,
    ABFLUGID             INT4                 null,
-   BUCHUNGID            INT4                 not null,
-   KUNDENNUMMER         INT4                 not null,
    DATUM                DATE                 null,
    PREIS                DECIMAL              null,
    constraint PK_BUCHUNG primary key (BUCHUNGID)

@@ -93,6 +93,11 @@ Und nun viel Spaß bei der Generierung der SQL-Statements :-)
     INNER JOIN flugverbindung ON flughafen.iata_code = flugverbindung.ziel
     AND flugverbindung.start = 'LHR';
     ```
+/*  SELECT flughafen.name
+    FROM flughafen, flugverbindung
+    WHERE flughafen.iata_code = flugverbindung.ziel
+    AND flugverbindung.start = 'LHR';*/
+
 5. Geben Sie die Gesamtsumme aus, die der Passagier „Michael Roth“ für Tickets ausgegeben hat.
 
 (geprüft) (achte auf Klammer bei buchung.preis)
